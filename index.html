@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style/style.css">
+	<script src="dist/index.js"></script>
+	<title>間違い探しジェネレーター</title>
+</head>
+<body>
+	<h1>間違い探しジェネレーター</h1>
+	<div id="errMsgBox"></div>
+	<div>
+		正しい文字：<input id="right" type="text" maxlength="1" placeholder="壁" value="あ"><br>
+		間違い文字：<input id="wrong" type="text" maxlength="1" placeholder="璧" value="お">
+	</div>
+	<div>
+		サイズ（横）：<input id="horizontal" type="number" value="30" min="10" max="100"><br>
+		サイズ（縦）：<input id="vertical"   type="number" value="10" min="10" max="100">
+	</div>
+	<button type="button" id="generate">生成！</button>
+	<canvas id="c" width="320" height="180">Canvasに対応したブラウザを利用してください。</canvas>
+</body>
+</html>

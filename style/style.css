@@ -1,0 +1,46 @@
+body{
+	font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
+	text-align: center;
+}
+h1{
+	padding-bottom: 0.35em;
+	font-size: 1.5em;
+	color: #333;
+	border-bottom: 3px solid #ccc;
+}
+div{
+	display: inline-block;
+}
+input{
+	font: inherit;
+	width: 3em;
+	margin-right: 10px;
+}
+/* input.incomplete{
+	border: 2px solid #ff0000;
+	border-radius: 3px;
+	background-color: #ffcccc;
+} */
+
+button{
+	display: block;
+	margin: 5px auto;
+	font: inherit;
+}
+canvas{
+	border: 1px solid #000000;
+	width: 90%;
+	max-width: 1000px;
+}
+
+#errMsgBox{
+	display: block;
+	margin: 1em;
+	border: 2px solid #ff0000;
+	color: #ff0000;
+	border-radius: 3px;
+	background-color: #fff0f0;
+}
+#errMsgBox:empty {
+	display: none;
+}
