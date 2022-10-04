@@ -35,7 +35,9 @@ canvas{
 
 #errMsgBox{
 	display: block;
-	margin: 1em;
+	max-width: 1000px;
+	width: 90%;
+	margin: 1em auto;
 	border: 2px solid #ff0000;
 	color: #ff0000;
 	border-radius: 3px;

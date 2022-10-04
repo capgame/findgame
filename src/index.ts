@@ -32,19 +32,22 @@ function initCanvas(){
 
 	ctx.fillStyle = "#000000";
 	const FONT_FAMILY = "'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',monospace";
-	ctx.font = "16px " + FONT_FAMILY;
+	ctx.font = "35px " + FONT_FAMILY;
 	ctx.textAlign = "center";
 	ctx.textBaseline = "middle";
 	
-	ctx.fillText("項目を入力して「生成！」をクリック！",320 / 2,180 / 2);
+	ctx.fillText("項目を入力して「生成！」をクリック！",640 / 2,360 / 2);
 	ctx.textAlign = "start";
 	ctx.textBaseline = "top";
 }
 
 function generate(){
-	deleteErrorMsg();
 	if(!(rightCharInput && wrongCharInput && horizontalLengthInput && verticalLengthInput))
 		return;
+	if(!canvas || !ctx)
+		return;
+
+	deleteErrorMsg();
 	const rightChar = rightCharInput.value;
 	const wrongChar = wrongCharInput.value;
 	const horizontalLength	= parseInt(horizontalLengthInput.value);
@@ -60,10 +63,17 @@ function generate(){
 		return;
 	}
 	
+	const textSize = calcTextSize(horizontalLength);
 	const text = makeText(rightChar,wrongChar,horizontalLength,verticalLength);
-	resizeCanvas(text);
-	drawTextToCanvas(text);
+	resizeCanvas(text,textSize);
+	drawTextToCanvas(text,textSize);
 }
+
+function calcTextSize(hLength: number){
+	const canvasWidth = Math.min(window.innerWidth * 0.9,1000);
+	return canvasWidth / hLength;
+}
+
 function makeText(right: string,wrong: string,h: number,v: number){
 	const wrongCharPlaceX = Math.floor(Math.random() * h);
 	const wrongCharPlaceY = Math.floor(Math.random() * v);
@@ -80,31 +90,31 @@ function makeText(right: string,wrong: string,h: number,v: number){
 	
 	return resultTexts;
 }
-function resizeCanvas(text: string[]){
+function resizeCanvas(text: string[],textSize: number){
 	if(!canvas || !ctx) return;
 
 	ctx.fillStyle = "#000000";
 	const FONT_FAMILY = "'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',monospace";
-	ctx.font = "16px " + FONT_FAMILY;
+	ctx.font = textSize + "px " + FONT_FAMILY;
 	ctx.textAlign = "start";
 	ctx.textBaseline = "top";
 
 	let metrics = ctx.measureText(text[0]);
 	canvas.width = Math.floor(metrics.width) + 1;
-	canvas.height = 16 * text.length;
+	canvas.height = textSize * text.length;
 }
 
-function drawTextToCanvas(text: string[]){
+function drawTextToCanvas(text: string[],textSize: number){
 	if(!canvas || !ctx) return;
 
 	ctx.fillStyle = "#000000";
 	const FONT_FAMILY = "'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic',monospace";
-	ctx.font = "16px " + FONT_FAMILY;
+	ctx.font = textSize + "px " + FONT_FAMILY;
 	ctx.textAlign = "start";
 	ctx.textBaseline = "top";
 
 	for(const [i,line] of text.entries()){
-		ctx.fillText(line,0,i * 16);
+		ctx.fillText(line,0,i * textSize);
 	}
 }
 
